@@ -11,12 +11,19 @@ WORKING_DIR = Path().cwd()
 PACKAGE_DIR = Path(__file__).parent
 
 SCHEDULER_PARAMS = {
-    "sge": {
-        "header": "header/sge.tpl",
+    "sge_gpu": {
+        "header": "header/sge_gpu.tpl",
         "extension": "pbs",
         "submit_command": "qsub",
         "submit_option": "",
-        "config": "sge.yml",
+        "config": "sge_gpu.yml",
+    },
+    "sge_cpu": {
+        "header": "header/sge_cpu.tpl",
+        "extension": "pbs",
+        "submit_command": "qsub",
+        "submit_option": "",
+        "config": "sge_cpu.yml",
     },
     "slurm": {
         "header": "header/slurm.tpl",
@@ -178,8 +185,8 @@ def user_to_abs_path(path, directory, required=False):
     path = Path(path)
 
     path = directory / path
-    cwd_path = WORKING_DIR / directory / path
-    pkg_path = PACKAGE_DIR / directory / path
+    cwd_path = WORKING_DIR / path
+    pkg_path = PACKAGE_DIR / path
     if path.exists():
         abs_path = path
     elif cwd_path.exists():

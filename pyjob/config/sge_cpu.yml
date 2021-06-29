@@ -1,0 +1,10 @@
+queues:
+- all.q,bigmem.q,goodboy.q
+n_cpus:
+- 2
+mem_req:
+- 32G
+h_vmem:
+- 10000G
+job_log_dir:
+- "~/pyjob_logs/"
